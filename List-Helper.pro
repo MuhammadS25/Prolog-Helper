@@ -14,7 +14,8 @@ nondeterm split(ilist, integer, ilist, ilist, ilist)
 nondeterm subset(ilist, ilist)
 nondeterm member(ilist, integer)
 nondeterm max(ilist,integer)
-nondeterm delete(integer,ilist,ilist)
+nondeterm del(ilist,integer,ilist)
+nondeterm d1(ilist,integer,ilist)
 nondeterm replace(ilist,integer,integer,ilist)
 nondeterm sum(ilist,ilist,ilist)
 nondeterm eq(ilist,ilist)
@@ -52,9 +53,13 @@ max([H],H).
 max([H|T],M):-max(T,NM),NM>=H,M=NM,!.
 max([H|[]],M):-M=H.
 
-delete(_,[],[]).
-delete(H,[H|T],T1):-!,delete(H,T,T1).
-delete(N,[H|T],[H|T1]):-delete(N,T,T1).
+d1([],_,[]).
+d1([H|T],H,T):-!.
+d1([H|T],X,[H|T1]):-d1(T,X,T1).
+
+del([],_,[]).
+del([H|T],H,T1):-!,del(T,H,T1).
+del([H|T],X,[H|T1]):-del(T,X,T1).
 
 replace([],_,_,[]):-!.
 replace([H|T],H,R,[R|T1]):-replace(T,H,R,T1),!.
