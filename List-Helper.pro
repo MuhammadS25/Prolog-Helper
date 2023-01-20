@@ -16,6 +16,8 @@ nondeterm member(ilist, integer)
 nondeterm max(ilist,integer)
 nondeterm delete(integer,ilist,ilist)
 nondeterm replace(ilist,integer,integer,ilist)
+nondeterm sum(ilist,ilist,ilist)
+nondeterm eq(ilist,ilist)
 
 clauses
 
@@ -57,6 +59,12 @@ delete(N,[H|T],[H|T1]):-delete(N,T,T1).
 replace([],_,_,[]):-!.
 replace([H|T],H,R,[R|T1]):-replace(T,H,R,T1),!.
 replace([H|T],X,R,[H|L]):-replace(T,X,R,L).
+
+sum([],[],[]).
+sum([H|T],[X|Y],[S|T1]):-S=H+X,sum(T,Y,T1).
+
+eq([],_).
+eq([H|T],L):-member(L,H),eq(T,L).
 
 goal
 subset([5,6,7, 10] ,[7,2,5,4,6,8]).
