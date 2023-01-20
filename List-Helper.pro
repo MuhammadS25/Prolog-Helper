@@ -4,15 +4,17 @@ clist = symbol*
 
 predicates
 
-len(ilist, integer)
-append(ilist, ilist, ilist)
-reverse(ilist, ilist)
-even(ilist)
-nth(clist, integer, symbol)
-swap(ilist, ilist)
-split(ilist, integer, ilist, ilist, ilist)
-subset(ilist, ilist).
-member(ilist, integer).
+nondeterm len(ilist, integer)
+nondeterm append(ilist, ilist, ilist)
+nondeterm reverse(ilist, ilist)
+nondeterm even(ilist)
+nondeterm nth(clist, integer, symbol)
+nondeterm swap(ilist, ilist)
+nondeterm split(ilist, integer, ilist, ilist, ilist)
+nondeterm subset(ilist, ilist)
+nondeterm member(ilist, integer)
+nondeterm max(ilist,integer)
+nondeterm delete(integer,ilist,ilist)
 
 clauses
 
@@ -42,6 +44,14 @@ subset([H | T], List2):- member(List2, H), subset(T, List2).
 
 member([H | _], H):-!.
 member([_ | T], Num):-member(T, Num).
+
+max([H],H).
+max([H|T],M):-max(T,NM),NM>=H,M=NM,!.
+max([H|[]],M):-M=H.
+
+delete(_,[],[]).
+delete(H,[H|T],T1):-!,delete(H,T,T1).
+delete(N,[H|T],[H|T1]):-delete(N,T,T1).
 
 goal
 subset([5,6,7, 10] ,[7,2,5,4,6,8]).
