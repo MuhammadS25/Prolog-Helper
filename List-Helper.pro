@@ -19,6 +19,7 @@ nondeterm d1(ilist,integer,ilist)
 nondeterm replace(ilist,integer,integer,ilist)
 nondeterm sum(ilist,ilist,ilist)
 nondeterm eq(ilist,ilist)
+nondeterm last(ilist,integer)
 
 clauses
 
@@ -70,6 +71,9 @@ sum([H|T],[X|Y],[S|T1]):-S=H+X,sum(T,Y,T1).
 
 eq([],_).
 eq([H|T],L):-member(L,H),eq(T,L).
+
+last([H|[]],H).
+last([_|T],X):-last(T,X).
 
 goal
 subset([5,6,7, 10] ,[7,2,5,4,6,8]).
