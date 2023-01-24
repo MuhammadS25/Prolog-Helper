@@ -76,4 +76,22 @@ last([H|[]],H).
 last([_|T],X):-last(T,X).
 
 goal
-subset([5,6,7, 10] ,[7,2,5,4,6,8]).
+%d1([1,2,1,1,1],1,X).
+%replace([1,2,3,2,2,2,2],2,0,X).
+%index([1,2,3],X,0). 
+%last([1,2,30],X).
+%eq([1,2,3,4],[2,2,3,3,1]).
+%max([1,2,3,4],M).
+%delete(5,[5,6,7,5],R).
+%-------------------------------------%
+%Built-ins 
+%Upper_lower("ABC",X).
+%Fronttoken("ab cd",Y,X).
+%Frontstr(2,"abcde",X,Y). % X=ab Y=cde
+%Frontstr(3,S,"ibr","ahim"). % Error
+%Fronttoken("cdef",X,Y). % X=cdef Y=
+%Frontchar(X,'a',"yat"). %ayat
+%str_len("ab",X). %2
+%str_len("ab",3). %NO
+%str_len(X,3).
+%Upper_lower(X,3).
