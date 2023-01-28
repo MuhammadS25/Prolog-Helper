@@ -3,7 +3,11 @@ Database - students
 predicates
 	nondeterm process
 	nondeterm perform(char)
-Clauses
+	loadStudents
+	saveStudents
+
+clauses
+
 perform('a'):-
 	write("enter student Id:"), readint(A),
 	not(student(A,_,_,_)),
@@ -44,6 +48,14 @@ process:-
 	readchar(X), write(X), nl, perform(X), process.
 
 process.
+
+saveStudents:- 
+	save("d:\\Studs.txt", students).
+
+loadStudents:- 
+	existfile("d:\\Studs.txt"), consult("d:\\Studs.txt", students).
+
+loadStudents. %not to quit the program if the file doesn’t exist
 
 goal
 	process.
